@@ -30,6 +30,7 @@ kg = conversion(lb, on)
 print(lb, "pounds and", on, "ounces is equivalent to", kg, "kilograms.")
 
 
+
 ############ Question 3 : ############
 
 #### Change calculator ####
@@ -64,7 +65,6 @@ money = 100*(float(input("Quel est le montant en dollars? ")))
 change = pieces_of_change(money)
 
 print("Le caissier doit rendre: ", change, "pieces de monnaie.")
-
 
 
 

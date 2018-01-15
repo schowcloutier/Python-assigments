@@ -1,10 +1,11 @@
-################## Assignment 2 ##################
-# Functions and loops #
+############ Assignment 2 ############
+        # Functions and loops #
 
 
-############## Question 1 : ##############
 
-#### Body Mass Index (BMI) calculator ####
+############ Question 1 : ############
+
+## Body Mass Index (BMI) calculator ##
 
 def bmi(kg, m):
     "This function calculates the body mass index of the user based on input values of weight and height"
@@ -16,7 +17,6 @@ m = float(input("Enter your height in metres: "))
 BMI = bmi(kg, m) 
 
 # determining where user's BMI lies on the scale #
-
 print("Your BMI is: ", BMI)
 if BMI < 18.5:
     print("Underweight")
@@ -28,7 +28,8 @@ else:
     print("Obesity")
 
 
-############## Question 2 : ##############
+
+############ Question 2 : ############
 
 ## Prints the integers in the range [a, b] ##
 
@@ -49,69 +50,104 @@ integers(a, b)
 
 
 
-############## Question 3 : ##############
+############ Question 3 : ############
 
-## Prints the integers in the range [a, b] ##
+## Generates a simple math game of either 10 addition questions, or 10 multiplication questions ##
 
 import random
 
-
-
-#la fonction
-
-def jeu(x,y):
-    "Cette fonction genere 10 questions de mathematique"
-    operation = int(input("Choisissez l'operation 0) Addition ou 1) Multiplication pour generer 10 questions: "))
-    if operation == 0: # les instructions pour les questions d'addition
-        print("Vous avez choisi les exercices d'addition. Donnez les reponses aux 10 questions suivantes.")
-        compteur = 1 # on ajoute un compteur afin que la boucle genere 10 questions seulement
-        bonne = 0
-        while compteur <= 10:
-                exercice = x + y #la bonne reponse qui se fera comparer avec le input
-                print(x, "+", y, "= ", end="") #end="" s'assure que le input sera sur la meme ligne que la question
-                reponse = int(input()) #la reponse que l'etudiant input dans le programme
-                compteur = compteur + 1
-                if reponse == exercice: #si true: bonne (nombre de bonnes reponses) + 1; si c'est la mauvaise reponse bonne restera comme sa valeur la plus recente
-                    bonne = bonne + 1 
-                if reponse != exercice:
-                    print("Incorrect -- la reponse est", exercice) #si l'etudiant a la mauvaise reponse on indique quelle etait la bonne reponse
-                x = random.randrange(0, 10) #pour la prochaine boucle les valeurs de x et y changent pour un autre nombre aleatoire
+def game(x,y):
+    "This function generates 10 simple math questions"
+    operation = int(input("Choose 0) Addition or 1) Multiplication to generate 10 questions: "))
+    if operation == 0:
+        print("You chose the addition questions. Answer the following 10 questions.")
+        counter = 1
+        correct = 0
+        while counter <= 10:
+                question = x + y 
+                print(x, "+", y, "= ", end="")
+                answer = int(input())
+                counter = counter + 1
+                if answer == question:
+                    correct = correct + 1 
+                if answer != question:
+                    print("Incorrect -- the answer is", question)
+                x = random.randrange(0, 10)
                 y = random.randrange(0, 10)
-    if operation == 1: #les instructions pour les questions de multiplication, comme pour ceux d'addition
-        print("Vous avez choisi les exercices de multiplication. Donnez les reponses aux 10 questions suivantes.")
-        compteur = 1
-        bonne = 0
-        while compteur <= 10:
+    if operation == 1:
+        print("You chose the multiplication questions. Answer the following 10 questions.")
+        counter = 1
+        correct = 0
+        while counter <= 10:
             print(x, "*", y, "= ", end="")
-            exercice = x*y
-            reponse = int(input())
-            compteur = compteur + 1
-            if reponse == exercice:
-                bonne = bonne + 1
-            if reponse != exercice:
-                print("Incorrect -- la reponse est", exercice)
+            question = x*y
+            answer = int(input())
+            counter = counter + 1
+            if answer == question:
+                correct = correct + 1
+            if answer != question:
+                print("Incorrect -- the answer is", question)
             x = random.randrange(0, 10)
             y = random.randrange(0, 10)
-    return bonne;
+    return correct;
 
-
-
-#les variables
-
-a = random.randrange(0,10) # a et b sont des valeurs entre 0 et 9
+a = random.randrange(0,10)
 b = random.randrange (0,10)
-questions = jeu(a,b) #cette variable appelle la fonction avec les parametres ci-dessus et prend la valeur de "bonne"
+questions = game(a,b) 
+
+print("You have answered", questions, "questions correctly.")
+if questions >= 6:
+    print("Congratulations!")
+if questions < 6: 
+    print("Ask your teacher for assistance.")
 
 
 
+############ Question 4 : ############
 
-print("Vous avez eu", questions, "reponses correctes.")
+## Generates a simple math game of 10 questions of addition and multiplication ##
 
-if questions >= 6: #si l'eleve a bien repondu a six questions
-    print("Feliciations!")
-if questions < 6: #si l'eleve a bien repondu a moins de six questions
-    print("Demandez a votre enseignant(e) de vous aider.")
+import random
+
+def game(x,y,z):
+    "Cette fonction genere 10 questions de mathematique de maniere aleatoire"
+    print("This is a randomly generated math quiz. Answer the 10 following questions.")
+    counter = 1
+    correct = 0
+    while counter <= 10:
+        operation = z
+        if operation == 0:
+            print(x, "+", y, "= ", end="")
+            question = x + y
+            reponse = int(input())
+            if reponse == question:
+                correct = correct + 1
+            if reponse != question:
+                print("Incorrect -- the answer is", question)
+        if operation == 1:
+            print(x, "*", y, "= ", end="")
+            question = x * y
+            reponse = int(input())
+            if reponse == question:
+                correct = correct + 1
+            if reponse != question:
+                print("Incorrect -- the answer is", question)
+        counter = counter + 1
+        z = random.randrange(0, 2)
+        x = random.randrange(0, 10)
+        y = random.randrange(0, 10)
+    return correct
 
 
+a = random.randrange(0, 10)
+b = random.randrange(0, 10)
+c = random.randrange(0, 2)
+questions = game(a,b,c)
+
+print("You have answered", questions, "questions correctly.")
+if questions >= 6:
+    print("Congratulations!")
+if questions < 6:
+    print("Ask your teacher for assistance.")
 
 
